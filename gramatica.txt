@@ -1,0 +1,22 @@
+programa = { sentencia };
+
+sentencia = asignacion | condicional | bucle | entrada | salida;
+
+asignacion = identificador, "=", expresion, ";";
+condicional = "si", "(", condicion, ")", "entonces", "{", {sentencia}, "}", ["sino", "{", {sentencia}, "}"];
+bucle = "mientras", "(", condicion, ")", "{", {sentencia}, "}";
+entrada = "leer", identificador, ";";
+salida = "escribir", expresion, ";";
+
+expresion = termino, {("+", termino | "-", termino)};
+termino = factor, {("*", factor | "/", factor)};
+factor = numero | identificador | "(", expresion, ")";
+
+condicion = expresion, operadorRelacional, expresion;
+operadorRelacional = ">", "<", ">=", "<=", "==", "!=";
+
+identificador = letra, {letra | digito};
+numero = digito, {digito};
+
+letra = "a" | "b" | ... | "z";
+digito = "0" | "1" | ... | "9";

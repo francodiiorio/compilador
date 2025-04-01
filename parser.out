@@ -1,0 +1,439 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    DISTINTO
+    ENTONCES
+    IGUALIGUAL
+    LLAVEDER
+    LLAVEIZQ
+    MAYOR
+    MAYORIGUAL
+    MENOR
+    MENORIGUAL
+    MIENTRAS
+    PARENDER
+    PARENIZQ
+    SI
+    SINO
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> sentencias
+Rule 2     sentencias -> sentencias sentencia
+Rule 3     sentencias -> sentencia
+Rule 4     sentencia -> asignacion
+Rule 5     sentencia -> entrada
+Rule 6     sentencia -> salida
+Rule 7     asignacion -> IDENTIFICADOR IGUAL expresion PUNTOCOMA
+Rule 8     expresion -> expresion MAS termino
+Rule 9     expresion -> expresion MENOS termino
+Rule 10    expresion -> termino
+Rule 11    termino -> termino POR factor
+Rule 12    termino -> termino DIVIDIDO factor
+Rule 13    termino -> factor
+Rule 14    factor -> NUMERO
+Rule 15    factor -> IDENTIFICADOR
+Rule 16    entrada -> LEER IDENTIFICADOR PUNTOCOMA
+Rule 17    salida -> ESCRIBIR expresion PUNTOCOMA
+
+Terminals, with rules where they appear
+
+DISTINTO             : 
+DIVIDIDO             : 12
+ENTONCES             : 
+ESCRIBIR             : 17
+IDENTIFICADOR        : 7 15 16
+IGUAL                : 7
+IGUALIGUAL           : 
+LEER                 : 16
+LLAVEDER             : 
+LLAVEIZQ             : 
+MAS                  : 8
+MAYOR                : 
+MAYORIGUAL           : 
+MENOR                : 
+MENORIGUAL           : 
+MENOS                : 9
+MIENTRAS             : 
+NUMERO               : 14
+PARENDER             : 
+PARENIZQ             : 
+POR                  : 11
+PUNTOCOMA            : 7 16 17
+SI                   : 
+SINO                 : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+asignacion           : 4
+entrada              : 5
+expresion            : 7 8 9 17
+factor               : 11 12 13
+programa             : 0
+salida               : 6
+sentencia            : 2 3
+sentencias           : 1 2
+termino              : 8 9 10 11 12
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . sentencias
+    (2) sentencias -> . sentencias sentencia
+    (3) sentencias -> . sentencia
+    (4) sentencia -> . asignacion
+    (5) sentencia -> . entrada
+    (6) sentencia -> . salida
+    (7) asignacion -> . IDENTIFICADOR IGUAL expresion PUNTOCOMA
+    (16) entrada -> . LEER IDENTIFICADOR PUNTOCOMA
+    (17) salida -> . ESCRIBIR expresion PUNTOCOMA
+
+    IDENTIFICADOR   shift and go to state 7
+    LEER            shift and go to state 8
+    ESCRIBIR        shift and go to state 9
+
+    programa                       shift and go to state 1
+    sentencias                     shift and go to state 2
+    sentencia                      shift and go to state 3
+    asignacion                     shift and go to state 4
+    entrada                        shift and go to state 5
+    salida                         shift and go to state 6
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> sentencias .
+    (2) sentencias -> sentencias . sentencia
+    (4) sentencia -> . asignacion
+    (5) sentencia -> . entrada
+    (6) sentencia -> . salida
+    (7) asignacion -> . IDENTIFICADOR IGUAL expresion PUNTOCOMA
+    (16) entrada -> . LEER IDENTIFICADOR PUNTOCOMA
+    (17) salida -> . ESCRIBIR expresion PUNTOCOMA
+
+    $end            reduce using rule 1 (programa -> sentencias .)
+    IDENTIFICADOR   shift and go to state 7
+    LEER            shift and go to state 8
+    ESCRIBIR        shift and go to state 9
+
+    sentencia                      shift and go to state 10
+    asignacion                     shift and go to state 4
+    entrada                        shift and go to state 5
+    salida                         shift and go to state 6
+
+state 3
+
+    (3) sentencias -> sentencia .
+
+    IDENTIFICADOR   reduce using rule 3 (sentencias -> sentencia .)
+    LEER            reduce using rule 3 (sentencias -> sentencia .)
+    ESCRIBIR        reduce using rule 3 (sentencias -> sentencia .)
+    $end            reduce using rule 3 (sentencias -> sentencia .)
+
+
+state 4
+
+    (4) sentencia -> asignacion .
+
+    IDENTIFICADOR   reduce using rule 4 (sentencia -> asignacion .)
+    LEER            reduce using rule 4 (sentencia -> asignacion .)
+    ESCRIBIR        reduce using rule 4 (sentencia -> asignacion .)
+    $end            reduce using rule 4 (sentencia -> asignacion .)
+
+
+state 5
+
+    (5) sentencia -> entrada .
+
+    IDENTIFICADOR   reduce using rule 5 (sentencia -> entrada .)
+    LEER            reduce using rule 5 (sentencia -> entrada .)
+    ESCRIBIR        reduce using rule 5 (sentencia -> entrada .)
+    $end            reduce using rule 5 (sentencia -> entrada .)
+
+
+state 6
+
+    (6) sentencia -> salida .
+
+    IDENTIFICADOR   reduce using rule 6 (sentencia -> salida .)
+    LEER            reduce using rule 6 (sentencia -> salida .)
+    ESCRIBIR        reduce using rule 6 (sentencia -> salida .)
+    $end            reduce using rule 6 (sentencia -> salida .)
+
+
+state 7
+
+    (7) asignacion -> IDENTIFICADOR . IGUAL expresion PUNTOCOMA
+
+    IGUAL           shift and go to state 11
+
+
+state 8
+
+    (16) entrada -> LEER . IDENTIFICADOR PUNTOCOMA
+
+    IDENTIFICADOR   shift and go to state 12
+
+
+state 9
+
+    (17) salida -> ESCRIBIR . expresion PUNTOCOMA
+    (8) expresion -> . expresion MAS termino
+    (9) expresion -> . expresion MENOS termino
+    (10) expresion -> . termino
+    (11) termino -> . termino POR factor
+    (12) termino -> . termino DIVIDIDO factor
+    (13) termino -> . factor
+    (14) factor -> . NUMERO
+    (15) factor -> . IDENTIFICADOR
+
+    NUMERO          shift and go to state 16
+    IDENTIFICADOR   shift and go to state 17
+
+    expresion                      shift and go to state 13
+    termino                        shift and go to state 14
+    factor                         shift and go to state 15
+
+state 10
+
+    (2) sentencias -> sentencias sentencia .
+
+    IDENTIFICADOR   reduce using rule 2 (sentencias -> sentencias sentencia .)
+    LEER            reduce using rule 2 (sentencias -> sentencias sentencia .)
+    ESCRIBIR        reduce using rule 2 (sentencias -> sentencias sentencia .)
+    $end            reduce using rule 2 (sentencias -> sentencias sentencia .)
+
+
+state 11
+
+    (7) asignacion -> IDENTIFICADOR IGUAL . expresion PUNTOCOMA
+    (8) expresion -> . expresion MAS termino
+    (9) expresion -> . expresion MENOS termino
+    (10) expresion -> . termino
+    (11) termino -> . termino POR factor
+    (12) termino -> . termino DIVIDIDO factor
+    (13) termino -> . factor
+    (14) factor -> . NUMERO
+    (15) factor -> . IDENTIFICADOR
+
+    NUMERO          shift and go to state 16
+    IDENTIFICADOR   shift and go to state 17
+
+    expresion                      shift and go to state 18
+    termino                        shift and go to state 14
+    factor                         shift and go to state 15
+
+state 12
+
+    (16) entrada -> LEER IDENTIFICADOR . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 19
+
+
+state 13
+
+    (17) salida -> ESCRIBIR expresion . PUNTOCOMA
+    (8) expresion -> expresion . MAS termino
+    (9) expresion -> expresion . MENOS termino
+
+    PUNTOCOMA       shift and go to state 20
+    MAS             shift and go to state 21
+    MENOS           shift and go to state 22
+
+
+state 14
+
+    (10) expresion -> termino .
+    (11) termino -> termino . POR factor
+    (12) termino -> termino . DIVIDIDO factor
+
+    PUNTOCOMA       reduce using rule 10 (expresion -> termino .)
+    MAS             reduce using rule 10 (expresion -> termino .)
+    MENOS           reduce using rule 10 (expresion -> termino .)
+    POR             shift and go to state 23
+    DIVIDIDO        shift and go to state 24
+
+
+state 15
+
+    (13) termino -> factor .
+
+    POR             reduce using rule 13 (termino -> factor .)
+    DIVIDIDO        reduce using rule 13 (termino -> factor .)
+    PUNTOCOMA       reduce using rule 13 (termino -> factor .)
+    MAS             reduce using rule 13 (termino -> factor .)
+    MENOS           reduce using rule 13 (termino -> factor .)
+
+
+state 16
+
+    (14) factor -> NUMERO .
+
+    POR             reduce using rule 14 (factor -> NUMERO .)
+    DIVIDIDO        reduce using rule 14 (factor -> NUMERO .)
+    PUNTOCOMA       reduce using rule 14 (factor -> NUMERO .)
+    MAS             reduce using rule 14 (factor -> NUMERO .)
+    MENOS           reduce using rule 14 (factor -> NUMERO .)
+
+
+state 17
+
+    (15) factor -> IDENTIFICADOR .
+
+    POR             reduce using rule 15 (factor -> IDENTIFICADOR .)
+    DIVIDIDO        reduce using rule 15 (factor -> IDENTIFICADOR .)
+    PUNTOCOMA       reduce using rule 15 (factor -> IDENTIFICADOR .)
+    MAS             reduce using rule 15 (factor -> IDENTIFICADOR .)
+    MENOS           reduce using rule 15 (factor -> IDENTIFICADOR .)
+
+
+state 18
+
+    (7) asignacion -> IDENTIFICADOR IGUAL expresion . PUNTOCOMA
+    (8) expresion -> expresion . MAS termino
+    (9) expresion -> expresion . MENOS termino
+
+    PUNTOCOMA       shift and go to state 25
+    MAS             shift and go to state 21
+    MENOS           shift and go to state 22
+
+
+state 19
+
+    (16) entrada -> LEER IDENTIFICADOR PUNTOCOMA .
+
+    IDENTIFICADOR   reduce using rule 16 (entrada -> LEER IDENTIFICADOR PUNTOCOMA .)
+    LEER            reduce using rule 16 (entrada -> LEER IDENTIFICADOR PUNTOCOMA .)
+    ESCRIBIR        reduce using rule 16 (entrada -> LEER IDENTIFICADOR PUNTOCOMA .)
+    $end            reduce using rule 16 (entrada -> LEER IDENTIFICADOR PUNTOCOMA .)
+
+
+state 20
+
+    (17) salida -> ESCRIBIR expresion PUNTOCOMA .
+
+    IDENTIFICADOR   reduce using rule 17 (salida -> ESCRIBIR expresion PUNTOCOMA .)
+    LEER            reduce using rule 17 (salida -> ESCRIBIR expresion PUNTOCOMA .)
+    ESCRIBIR        reduce using rule 17 (salida -> ESCRIBIR expresion PUNTOCOMA .)
+    $end            reduce using rule 17 (salida -> ESCRIBIR expresion PUNTOCOMA .)
+
+
+state 21
+
+    (8) expresion -> expresion MAS . termino
+    (11) termino -> . termino POR factor
+    (12) termino -> . termino DIVIDIDO factor
+    (13) termino -> . factor
+    (14) factor -> . NUMERO
+    (15) factor -> . IDENTIFICADOR
+
+    NUMERO          shift and go to state 16
+    IDENTIFICADOR   shift and go to state 17
+
+    termino                        shift and go to state 26
+    factor                         shift and go to state 15
+
+state 22
+
+    (9) expresion -> expresion MENOS . termino
+    (11) termino -> . termino POR factor
+    (12) termino -> . termino DIVIDIDO factor
+    (13) termino -> . factor
+    (14) factor -> . NUMERO
+    (15) factor -> . IDENTIFICADOR
+
+    NUMERO          shift and go to state 16
+    IDENTIFICADOR   shift and go to state 17
+
+    termino                        shift and go to state 27
+    factor                         shift and go to state 15
+
+state 23
+
+    (11) termino -> termino POR . factor
+    (14) factor -> . NUMERO
+    (15) factor -> . IDENTIFICADOR
+
+    NUMERO          shift and go to state 16
+    IDENTIFICADOR   shift and go to state 17
+
+    factor                         shift and go to state 28
+
+state 24
+
+    (12) termino -> termino DIVIDIDO . factor
+    (14) factor -> . NUMERO
+    (15) factor -> . IDENTIFICADOR
+
+    NUMERO          shift and go to state 16
+    IDENTIFICADOR   shift and go to state 17
+
+    factor                         shift and go to state 29
+
+state 25
+
+    (7) asignacion -> IDENTIFICADOR IGUAL expresion PUNTOCOMA .
+
+    IDENTIFICADOR   reduce using rule 7 (asignacion -> IDENTIFICADOR IGUAL expresion PUNTOCOMA .)
+    LEER            reduce using rule 7 (asignacion -> IDENTIFICADOR IGUAL expresion PUNTOCOMA .)
+    ESCRIBIR        reduce using rule 7 (asignacion -> IDENTIFICADOR IGUAL expresion PUNTOCOMA .)
+    $end            reduce using rule 7 (asignacion -> IDENTIFICADOR IGUAL expresion PUNTOCOMA .)
+
+
+state 26
+
+    (8) expresion -> expresion MAS termino .
+    (11) termino -> termino . POR factor
+    (12) termino -> termino . DIVIDIDO factor
+
+    PUNTOCOMA       reduce using rule 8 (expresion -> expresion MAS termino .)
+    MAS             reduce using rule 8 (expresion -> expresion MAS termino .)
+    MENOS           reduce using rule 8 (expresion -> expresion MAS termino .)
+    POR             shift and go to state 23
+    DIVIDIDO        shift and go to state 24
+
+
+state 27
+
+    (9) expresion -> expresion MENOS termino .
+    (11) termino -> termino . POR factor
+    (12) termino -> termino . DIVIDIDO factor
+
+    PUNTOCOMA       reduce using rule 9 (expresion -> expresion MENOS termino .)
+    MAS             reduce using rule 9 (expresion -> expresion MENOS termino .)
+    MENOS           reduce using rule 9 (expresion -> expresion MENOS termino .)
+    POR             shift and go to state 23
+    DIVIDIDO        shift and go to state 24
+
+
+state 28
+
+    (11) termino -> termino POR factor .
+
+    POR             reduce using rule 11 (termino -> termino POR factor .)
+    DIVIDIDO        reduce using rule 11 (termino -> termino POR factor .)
+    PUNTOCOMA       reduce using rule 11 (termino -> termino POR factor .)
+    MAS             reduce using rule 11 (termino -> termino POR factor .)
+    MENOS           reduce using rule 11 (termino -> termino POR factor .)
+
+
+state 29
+
+    (12) termino -> termino DIVIDIDO factor .
+
+    POR             reduce using rule 12 (termino -> termino DIVIDIDO factor .)
+    DIVIDIDO        reduce using rule 12 (termino -> termino DIVIDIDO factor .)
+    PUNTOCOMA       reduce using rule 12 (termino -> termino DIVIDIDO factor .)
+    MAS             reduce using rule 12 (termino -> termino DIVIDIDO factor .)
+    MENOS           reduce using rule 12 (termino -> termino DIVIDIDO factor .)
+
