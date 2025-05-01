@@ -1,30 +1,18 @@
-# main.py (Intérprete interactivo REPL)
+# main.py
 from lexer import lexer
 from mi_parser import parser
 
-print("🧉 MateLang REPL - Escribí 'salir' para terminar 🧉")
+# Ruta del archivo con el código fuente
+archivo_codigo = "codigo.txt"
 
-codigo_completo = ''
-
-while True:
-    try:
-        entrada = input('>>> ')
-        if entrada.strip() == 'salir':
-            print("👋 ¡Chau, nos vemos pronto!")
-            break
-        if entrada.strip() == '':
-            continue
-
-        # Añadimos cada línea ingresada al código completo
-        codigo_completo += entrada + '\n'
-
-        # Intentamos parsear y ejecutar inmediatamente
-        resultado = parser.parse(codigo_completo)
-
-        # Reiniciamos código_completo si la ejecución es exitosa
-        codigo_completo = ''
-
-    except Exception as e:
-        print(f"⚠️ Error: {e}")
-        # Si hay error, limpiamos para seguir ingresando
-        codigo_completo = ''
+try:
+    with open(archivo_codigo, 'r') as archivo:
+        codigo = archivo.read()
+        print("📄 Código a analizar:\n", codigo)
+        print("\n🔍 Analizando...\n")
+        resultado = parser.parse(codigo, lexer=lexer)
+        print("\n✅ Análisis completado.")
+except FileNotFoundError:
+    print(f"❌ No se encontró el archivo '{archivo_codigo}'")
+except Exception as e:
+    print(f"⚠️ Error durante el análisis: {e}")
